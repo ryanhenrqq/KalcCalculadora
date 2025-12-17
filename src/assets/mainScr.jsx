@@ -22,7 +22,7 @@ export function NumberPad() {
                 <div className='number-9 button-outside' onClick={() => changeDisplay("9")}>
                     <button>9</button>
                 </div>
-                <div className='number-9 button-outside' onClick={eraseDisplay}>
+                <div className='number-del button-outside' onClick={eraseDisplay}>
                     <button>DEL</button>
                 </div>
                 </div>
