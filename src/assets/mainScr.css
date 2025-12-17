@@ -36,3 +36,9 @@ button:active {
 .number-del button:active {
     border: solid 1px red;
 }
+.number-times button:hover {
+    border: solid 1px greenyellow;
+}
+.number-times button:active {
+    border: solid 1px greenyellow;
+}

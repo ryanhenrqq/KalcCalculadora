@@ -3,15 +3,22 @@ import "./mainScr.css"
 
 export function NumberPad() {
     const [display, setDisplay] = useState("0")
+    const [colorDisplay, setColorDisplay] = useState("white")
     function changeDisplay(number) {
         display === "0" ? setDisplay(number) : setDisplay(bef => bef + number)
     }
     function eraseDisplay() {
+        setTimeout(() => {
+            setColorDisplay("white")
+        }, 500)
+        setColorDisplay("red")
         setDisplay("0")
     }
     return (
         <div className="contents">
-            <div className="number-display">{display}</div>
+            <div className="number-display">
+                <b style={{ color: colorDisplay}}>{display}</b>
+            </div>
             <div className='row-1'>
                 <div className='number-7 button-outside' onClick={() => changeDisplay("7")}>
                     <button>7</button>
@@ -22,8 +29,8 @@ export function NumberPad() {
                 <div className='number-9 button-outside' onClick={() => changeDisplay("9")}>
                     <button>9</button>
                 </div>
-                <div className='number-del button-outside' onClick={eraseDisplay}>
-                    <button>DEL</button>
+                <div className='number-times button-outside' onClick={eraseDisplay}>
+                    <button>/</button>
                 </div>
                 </div>
                 <div className='row-2'>
@@ -36,6 +43,9 @@ export function NumberPad() {
                 <div className='number-6 button-outside' onClick={() => changeDisplay("6")}>
                     <button>6</button>
                 </div>
+                <div className='number-times button-outside' onClick={eraseDisplay}>
+                    <button>x</button>
+                </div>
                 </div>
                 <div className='row-3'>
                 <div className='number-1 button-outside' onClick={() => changeDisplay("1")}>
@@ -46,6 +56,9 @@ export function NumberPad() {
                 </div>
                 <div className='number-3 button-outside' onClick={() => changeDisplay("3")}>
                     <button>3</button>
+                </div>
+                <div className='number-times button-outside' onClick={eraseDisplay}>
+                    <button>-</button>
                 </div>
                 </div>
                 <div className='row-4'>
@@ -58,9 +71,14 @@ export function NumberPad() {
                 <div className='symbol-equals button-outside' onClick={() => changeDisplay("=")}>
                     <button>=</button>
                 </div>
+                <div className='number-times button-outside' onClick={eraseDisplay}>
+                    <button>+</button>
+                </div>
                 </div>
                 <div className='row-5'>
-                    <button>Formulas</button>
+                    <div className='number-del' onClick={eraseDisplay}>
+                        <button>DEL</button>
+                    </div>
                 </div>
         </div>
     )
