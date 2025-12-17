@@ -4,10 +4,51 @@ import "./mainScr.css"
 export function NumberPad() {
     const [display, setDisplay] = useState("0")
     const [colorDisplay, setColorDisplay] = useState("white")
+    const [twoNumbers, setTwoNumbers] = useState({
+        numberOne: 0,
+        numberTwo: 0,
+        action: "Not Set"
+    })
+    /* Rascunho */
+    /*
+    function numberGetter(equation) {
+        setTwoNumbers((prevList) => ({
+            ...prevList,
+            numberOne: Number(display),
+            action: equation
+        }))
+        setDisplay("0")
+    }
+    function numberTwoGetter() {
+        console.log(twoNumbers)
+        setTwoNumbers((prevList) => ({
+            ...prevList,
+            numberTwo: Number(display)
+        }))
+        setTimeout(() => {
+            setDisplay(twoNumbers.numberOne + twoNumbers.numberTwo)
+        }, 500)
+    } */
     function changeDisplay(number) {
-        display === "0" ? setDisplay(number) : setDisplay(bef => bef + number)
+        if (display.length > 12) {
+            showInfoOnDisplay("Numero Grande!")
+        } else {
+            display === "0" ? setDisplay(number) : setDisplay(bef => bef + number)
+        }
+        
+    }
+    function showInfoOnDisplay(message) {
+        setDisplay(message)
+        setTimeout(() => {
+            setDisplay("0")
+        }, 1000)
     }
     function eraseDisplay() {
+        setTwoNumbers({
+            numberOne: 0,
+            numberTwo: 0,
+            action: "Not Set"
+        })
         setTimeout(() => {
             setColorDisplay("white")
         }, 500)
@@ -29,7 +70,7 @@ export function NumberPad() {
                 <div className='number-9 button-outside' onClick={() => changeDisplay("9")}>
                     <button>9</button>
                 </div>
-                <div className='number-times button-outside' onClick={eraseDisplay}>
+                <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
                     <button>/</button>
                 </div>
                 </div>
@@ -43,7 +84,7 @@ export function NumberPad() {
                 <div className='number-6 button-outside' onClick={() => changeDisplay("6")}>
                     <button>6</button>
                 </div>
-                <div className='number-times button-outside' onClick={eraseDisplay}>
+                <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
                     <button>x</button>
                 </div>
                 </div>
@@ -57,7 +98,7 @@ export function NumberPad() {
                 <div className='number-3 button-outside' onClick={() => changeDisplay("3")}>
                     <button>3</button>
                 </div>
-                <div className='number-times button-outside' onClick={eraseDisplay}>
+                <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
                     <button>-</button>
                 </div>
                 </div>
@@ -65,13 +106,13 @@ export function NumberPad() {
                 <div className='number-0 button-outside' onClick={() => changeDisplay("0")}>
                     <button>0</button>
                 </div>
-                <div className='symbol-dot button-outside'  onClick={() => changeDisplay(".")}>
+                <div className='symbol-dot button-outside' onClick={() => changeDisplay(".")}>
                     <button>.</button>
                 </div>
-                <div className='symbol-equals button-outside' onClick={() => changeDisplay("=")}>
+                <div className='symbol-equals button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}/*onClick={() => numberTwoGetter()}*/>
                     <button>=</button>
                 </div>
-                <div className='number-times button-outside' onClick={eraseDisplay}>
+                <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}/*onClick={() => numberGetter("+")}*/>
                     <button>+</button>
                 </div>
                 </div>
