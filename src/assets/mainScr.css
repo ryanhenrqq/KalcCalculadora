@@ -15,7 +15,7 @@
     padding: 20px;
     border-radius: 28px;
 }
-.row-1, .row-2, .row-3, .row-4 {
+.row-1, .row-2, .row-3, .row-4, .row-5 {
     display: flex;
     flex-direction: row;
 } /* Todos os botões: Estilos Globais primeiro */
@@ -38,6 +38,9 @@ button:active {
 .button-outside {
     width: 6rem;
     height: 6rem;
+    margin: 8px;
+}
+.number-del {
     margin: 8px;
 }
 .number-del button:hover {

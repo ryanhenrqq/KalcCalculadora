@@ -120,6 +120,9 @@ export function NumberPad() {
                     <div className='number-del' onClick={eraseDisplay}>
                         <button>DEL</button>
                     </div>
+                    <div className='number-del' onClick={() => showInfoOnDisplay("Indisponivel")}>
+                        <button>Formulas</button>
+                    </div>
                 </div>
         </div>
     )
