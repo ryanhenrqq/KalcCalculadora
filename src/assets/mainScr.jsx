@@ -28,7 +28,6 @@ export function NumberPad() {
         } else {
             showInfoOnDisplay("Erro Interno")
         }
-        
     }
 
     function changeDisplay(number) {
