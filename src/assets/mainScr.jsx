@@ -4,31 +4,33 @@ import "./mainScr.css"
 export function NumberPad() {
     const [display, setDisplay] = useState("0")
     const [colorDisplay, setColorDisplay] = useState("white")
-    const [twoNumbers, setTwoNumbers] = useState({
-        numberOne: 0,
-        numberTwo: 0,
-        action: "Not Set"
-    })
-    /* Rascunho */
-    /*
-    function numberGetter(equation) {
-        setTwoNumbers((prevList) => ({
-            ...prevList,
-            numberOne: Number(display),
-            action: equation
-        }))
-        setDisplay("0")
+    const [numberOne, setNumberOne] = useState(0)
+    const [numberTwo, setNumberTwo] = useState(0)
+    const [functioner, setFunctioner] = useState("?")
+    const [finalResult, setFinalResult] = useState(0)
+
+    const calculateItTwo = () => {
+        setFinalResult(parseInt(numberOne + numberTwo))
+        console.log(finalResult)
     }
-    function numberTwoGetter() {
-        console.log(twoNumbers)
-        setTwoNumbers((prevList) => ({
-            ...prevList,
-            numberTwo: Number(display)
-        }))
-        setTimeout(() => {
-            setDisplay(twoNumbers.numberOne + twoNumbers.numberTwo)
-        }, 500)
-    } */
+    function handleSetter(index) {
+        if (index === 0 && numberOne == 0) {
+            setNumberOne(parseInt(display))
+            setDisplay("0")
+            console.log("index 1 running", display, numberOne, numberTwo)
+            return
+        } else if (index === 1 && numberTwo == 0 && numberOne != 0) {
+            setNumberTwo(parseInt(display))
+            console.log("index 2 running", display, numberOne, numberTwo)
+            calculateItTwo()
+            setDisplay(finalResult)
+            return
+        } else {
+            showInfoOnDisplay("Erro Interno")
+        }
+        
+    }
+
     function changeDisplay(number) {
         if (display.length > 12) {
             showInfoOnDisplay("Numero Grande!")
@@ -44,11 +46,6 @@ export function NumberPad() {
         }, 1000)
     }
     function eraseDisplay() {
-        setTwoNumbers({
-            numberOne: 0,
-            numberTwo: 0,
-            action: "Not Set"
-        })
         setTimeout(() => {
             setColorDisplay("white")
         }, 500)
@@ -109,10 +106,10 @@ export function NumberPad() {
                 <div className='symbol-dot button-outside' onClick={() => changeDisplay(".")}>
                     <button>.</button>
                 </div>
-                <div className='symbol-equals button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}/*onClick={() => numberTwoGetter()}*/>
+                <div className='symbol-equals button-outside' onClick={() => handleSetter(1)}>
                     <button>=</button>
                 </div>
-                <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}/*onClick={() => numberGetter("+")}*/>
+                <div className='number-times button-outside' onClick={() => handleSetter(0)}>
                     <button>+</button>
                 </div>
                 </div>
