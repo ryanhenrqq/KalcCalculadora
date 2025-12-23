@@ -7,6 +7,7 @@ function App() {
     <>
     <div className="pg-content">
       <div className="header">
+        <img src="./src/res/calculator.png" alt="Calculator" />
         <h1 className="title">Kalc</h1>
       </div>
       <div className='main-content'>
