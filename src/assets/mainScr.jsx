@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import "./mainScr.css"
 
 export function NumberPad() {
@@ -9,25 +9,44 @@ export function NumberPad() {
     const [functioner, setFunctioner] = useState("?")
     const [finalResult, setFinalResult] = useState(0)
 
+    const plusButton = useRef(null)
+
     const calculateItTwo = () => {
         setFinalResult(parseInt(numberOne + numberTwo))
         console.log(finalResult)
     }
     function handleSetter(index) {
+        /* 
+        Bugs to fix:
+        1 - Delay to update numberOne and numberTwo states (sometimes didn't even change!)
+        2- The finalResult setted inside calculateItTwo() fails too, probaly cause the first problem
+        */
         if (index === 0 && numberOne == 0) {
+            changeColorToRed()
             setNumberOne(parseInt(display))
             setDisplay("0")
-            console.log("index 1 running", display, numberOne, numberTwo)
+            console.log("index 1 running", display, numberOne, numberTwo) /* All the times the numberOne and numberTwo returns int 0 */
             return
         } else if (index === 1 && numberTwo == 0 && numberOne != 0) {
+            undoColorToRed()
             setNumberTwo(parseInt(display))
             console.log("index 2 running", display, numberOne, numberTwo)
             calculateItTwo()
             setDisplay(finalResult)
             return
         } else {
+            undoColorToRed()
             showInfoOnDisplay("Erro Interno")
         }
+    }
+
+    function changeColorToRed(e) {
+        plusButton.current.style.backgroundColor = "white"
+        plusButton.current.style.color = "black"
+    }
+    function undoColorToRed() {
+        plusButton.current.style.backgroundColor = "#10101080"
+        plusButton.current.style.color = "white"
     }
 
     function changeDisplay(number) {
@@ -41,6 +60,9 @@ export function NumberPad() {
     function showInfoOnDisplay(message) {
         setDisplay(message)
         setTimeout(() => {
+            setNumberOne(0)
+            setNumberTwo(0)
+            setFinalResult(0)
             setDisplay("0")
         }, 1000)
     }
@@ -109,7 +131,7 @@ export function NumberPad() {
                     <button>=</button>
                 </div>
                 <div className='number-times button-outside' onClick={() => handleSetter(0)}>
-                    <button>+</button>
+                    <button ref={plusButton}>+</button>
                 </div>
                 </div>
                 <div className='row-5'>
