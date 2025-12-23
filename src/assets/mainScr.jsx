@@ -21,7 +21,7 @@ export function NumberPad() {
         1 - Delay to update numberOne and numberTwo states (sometimes didn't even change!)
         2- The finalResult setted inside calculateItTwo() fails too, probaly cause the first problem
         */
-        if (index === 0 && numberOne == 0) {
+        if (index === 0 && numberOne == 0 && display != "0") {
             changeColorToRed()
             setNumberOne(parseInt(display))
             setDisplay("0")
@@ -142,6 +142,14 @@ export function NumberPad() {
                         <button>Formulas</button>
                     </div>
                 </div>
+        </div>
+    )
+}
+
+export function FormPad() {
+    return (
+        <div>
+            Hello, World!
         </div>
     )
 }

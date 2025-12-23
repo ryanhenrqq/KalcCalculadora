@@ -21,6 +21,11 @@
 }
 
 /* Codigo adicionado manualmente depois */
+.pg-content {
+  display: flex;
+  flex-direction: column
+  ;
+}
 .header {
   display: flex;
   flex-direction: row;
@@ -28,4 +33,8 @@
   position: absolute;
   top: 0;
   left: 5%;
+}
+.main-content {
+  display: flex;
+  flex-direction: row;
 }
