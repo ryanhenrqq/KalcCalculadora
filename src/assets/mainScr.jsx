@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import "./mainScr.css"
 
 export function NumberPad() {
@@ -8,31 +8,50 @@ export function NumberPad() {
     const [numberTwo, setNumberTwo] = useState(0)
     const [functioner, setFunctioner] = useState("?")
     const [finalResult, setFinalResult] = useState(0)
+    // Re-check it later, not working
+    let valOne = 0
+    let valTwo = 0
+    let finalValue = 0
+    // ^
 
     const plusButton = useRef(null)
 
-    const calculateItTwo = () => {
-        setFinalResult(parseInt(numberOne + numberTwo))
-        console.log(finalResult)
+    // Re-check it later
+    function calculateItTwo(n1, n2) {
+        console.log("running calcittwo")
+        return n1 + n2
     }
+    
+
+    useEffect(() => {
+        if (numberOne !== 0 && numberTwo !== 0) {
+            finalValue = Number(valOne + valTwo)
+            setFinalResult(finalValue)
+            setDisplay(finalValue)
+        }
+    }, [])
+    // ^
+
     function handleSetter(index) {
         /* 
         Bugs to fix:
         1 - Delay to update numberOne and numberTwo states (sometimes didn't even change!)
         2- The finalResult setted inside calculateItTwo() fails too, probaly cause the first problem
         */
-        if (index === 0 && numberOne == 0 && display != "0") {
+        if (index === 0) {
             changeColorToRed()
-            setNumberOne(parseInt(display))
+            valOne = parseInt(display)
+            setNumberOne(valOne)
             setDisplay("0")
             console.log("index 1 running", display, numberOne, numberTwo) /* All the times the numberOne and numberTwo returns int 0 */
             return
-        } else if (index === 1 && numberTwo == 0 && numberOne != 0) {
+        } else if (index === 1 && numberOne !== 0) {
+            console.log("running index 2")
             undoColorToRed()
-            setNumberTwo(parseInt(display))
-            console.log("index 2 running", display, numberOne, numberTwo)
-            calculateItTwo()
-            setDisplay(finalResult)
+            valTwo = parseInt(display)
+            setNumberTwo(valTwo)
+            // finalValue = calculateItTwo(valOne, valTwo)
+            setDisplay(finalValue)
             return
         } else {
             undoColorToRed()
@@ -148,8 +167,7 @@ export function NumberPad() {
 
 export function FormPad() {
     return (
-        <div>
-            Hello, World!
+        <div>    
         </div>
     )
 }
