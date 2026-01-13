@@ -3,60 +3,20 @@ import "./mainScr.css"
 
 export function NumberPad() {
     const [display, setDisplay] = useState("0")
-    const [colorDisplay, setColorDisplay] = useState("white")
-    const [numberOne, setNumberOne] = useState(0)
-    const [numberTwo, setNumberTwo] = useState(0)
-    const [functioner, setFunctioner] = useState("?")
-    const [finalResult, setFinalResult] = useState(0)
-    // Re-check it later, not working
-    let valOne = 0
-    let valTwo = 0
-    let finalValue = 0
-    // ^
+    const [valOne, setValOne] = useState(null)
 
     const plusButton = useRef(null)
 
-    // Re-check it later
-    function calculateItTwo(n1, n2) {
-        console.log("running calcittwo")
-        return n1 + n2
+    function handlePlus() {
+        setValOne(Number(display))
+        changeColorToRed()
+        setDisplay("0")
+        console.log("index 1 running", display, valOne)
     }
-    
-
-    useEffect(() => {
-        if (numberOne !== 0 && numberTwo !== 0) {
-            finalValue = Number(valOne + valTwo)
-            setFinalResult(finalValue)
-            setDisplay(finalValue)
-        }
-    }, [])
-    // ^
-
-    function handleSetter(index) {
-        /* 
-        Bugs to fix:
-        1 - Delay to update numberOne and numberTwo states (sometimes didn't even change!)
-        2- The finalResult setted inside calculateItTwo() fails too, probaly cause the first problem
-        */
-        if (index === 0) {
-            changeColorToRed()
-            valOne = parseInt(display)
-            setNumberOne(valOne)
-            setDisplay("0")
-            console.log("index 1 running", display, numberOne, numberTwo) /* All the times the numberOne and numberTwo returns int 0 */
-            return
-        } else if (index === 1 && numberOne !== 0) {
-            console.log("running index 2")
-            undoColorToRed()
-            valTwo = parseInt(display)
-            setNumberTwo(valTwo)
-            // finalValue = calculateItTwo(valOne, valTwo)
-            setDisplay(finalValue)
-            return
-        } else {
-            undoColorToRed()
-            showInfoOnDisplay("Erro Interno")
-        }
+    function handleEquals() {
+        const result = valOne + Number(display) // logica que deu certo:
+        setDisplay(result)                  // usar o valor 2 diretamente
+        undoColorToRed()
     }
 
     function changeColorToRed(e) {
@@ -79,23 +39,18 @@ export function NumberPad() {
     function showInfoOnDisplay(message) {
         setDisplay(message)
         setTimeout(() => {
-            setNumberOne(0)
-            setNumberTwo(0)
-            setFinalResult(0)
+            setValOne(null)
             setDisplay("0")
         }, 1000)
     }
     function eraseDisplay() {
-        setTimeout(() => {
-            setColorDisplay("white")
-        }, 500)
-        setColorDisplay("red")
+        setValOne(null)
         setDisplay("0")
     }
     return (
         <div className="contents">
             <div className="number-display">
-                <b style={{ color: colorDisplay}}>{display}</b>
+                <input value={display} readOnly />
             </div>
             <div className='row-1'>
                 <div className='number-7 button-outside' onClick={() => changeDisplay("7")}>
@@ -146,10 +101,10 @@ export function NumberPad() {
                 <div className='symbol-dot button-outside' onClick={() => changeDisplay(".")}>
                     <button>.</button>
                 </div>
-                <div className='symbol-equals button-outside' onClick={() => handleSetter(1)}>
+                <div className='symbol-equals button-outside' onClick={handleEquals}>
                     <button>=</button>
                 </div>
-                <div className='number-times button-outside' onClick={() => handleSetter(0)}>
+                <div className='number-times button-outside' onClick={handlePlus}>
                     <button ref={plusButton}>+</button>
                 </div>
                 </div>
