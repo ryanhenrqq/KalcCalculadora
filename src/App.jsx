@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NumberPad, FormPad } from "./assets/mainScr.jsx"
+import { NumberPad } from "./assets/mainScr.jsx"
 import './App.css'
 
 function App() {

@@ -52,70 +52,70 @@ export function NumberPad() {
             <div className="number-display">
                 <input value={display} readOnly />
             </div>
-            <div className='row-1'>
-                <div className='number-7 button-outside' onClick={() => changeDisplay("7")}>
-                    <button>7</button>
-                </div>
-                <div className='number-8 button-outside' onClick={() => changeDisplay("8")}>
-                    <button>8</button>
-                </div>
-                <div className='number-9 button-outside' onClick={() => changeDisplay("9")}>
-                    <button>9</button>
-                </div>
-                <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
-                    <button>/</button>
-                </div>
-                </div>
-                <div className='row-2'>
-                <div className='number-4 button-outside' onClick={() => changeDisplay("4")}>
-                    <button>4</button>
-                </div>
-                <div className='number-5 button-outside' onClick={() => changeDisplay("5")}>
-                    <button>5</button>
-                </div>
-                <div className='number-6 button-outside' onClick={() => changeDisplay("6")}>
-                    <button>6</button>
-                </div>
-                <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
-                    <button>x</button>
-                </div>
-                </div>
-                <div className='row-3'>
-                <div className='number-1 button-outside' onClick={() => changeDisplay("1")}>
-                    <button>1</button>
-                </div>
-                <div className='number-2 button-outside' onClick={() => changeDisplay("2")}>
-                    <button>2</button>
-                </div>
-                <div className='number-3 button-outside' onClick={() => changeDisplay("3")}>
-                    <button>3</button>
-                </div>
-                <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
-                    <button>-</button>
-                </div>
-                </div>
-                <div className='row-4'>
-                <div className='number-0 button-outside' onClick={() => changeDisplay("0")}>
-                    <button>0</button>
-                </div>
-                <div className='symbol-dot button-outside' onClick={() => changeDisplay(".")}>
-                    <button>.</button>
-                </div>
-                <div className='symbol-equals button-outside' onClick={handleEquals}>
-                    <button>=</button>
-                </div>
-                <div className='number-times button-outside' onClick={handlePlus}>
-                    <button ref={plusButton}>+</button>
-                </div>
-                </div>
-                <div className='row-5'>
-                    <div className='number-del' onClick={eraseDisplay}>
-                        <button>DEL</button>
+            <div className="flex-hor">
+                <div>
+                    <div className='row-1'>
+                        <NumPadButton label="7" classname="number-7" onclick={() => changeDisplay("7")} />
+                        <NumPadButton label="8" classname="number-8" onclick={() => changeDisplay("8")} />
+                        <NumPadButton label="9" classname="number-9" onclick={() => changeDisplay("9")} />
+                        <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
+                            <button>/</button>
+                        </div>
                     </div>
-                    <div className='number-del' onClick={() => showInfoOnDisplay("Indisponivel")}>
-                        <button>Formulas</button>
+                    <div className='row-2'>
+                        <NumPadButton label="4" classname="number-4" onclick={() => changeDisplay("4")} />
+                        <NumPadButton label="5" classname="number-5" onclick={() => changeDisplay("5")} />
+                        <NumPadButton label="6" classname="number-6" onclick={() => changeDisplay("6")} />
+                        <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
+                            <button>x</button>
+                        </div>
+                    </div>
+                    <div className='row-3'>
+                        <NumPadButton label="1" classname="number-1" onclick={() => changeDisplay("1")} />
+                        <NumPadButton label="2" classname="number-2" onclick={() => changeDisplay("2")} />
+                        <NumPadButton label="3" classname="number-3" onclick={() => changeDisplay("3")} />
+                        <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
+                            <button>-</button>
+                        </div>
+                    </div>
+                    <div className='row-4'>
+                        <NumPadButton label="0" classname="number-0" onclick={() => changeDisplay("0")} />
+                        <NumPadButton label=".," classname="symbol-dot" onclick={() => changeDisplay(".")} />
+                        <div className='symbol-equals button-outside' onClick={handleEquals}>
+                            <button>=</button>
+                        </div>
+                        <div className='number-times button-outside' onClick={handlePlus}>
+                            <button ref={plusButton}>+</button>
+                        </div>
                     </div>
                 </div>
+                <div>
+                    <ToolboxBar onDel={eraseDisplay} onFormulas={() => showInfoOnDisplay("Indisponivel")} />
+                </div>
+
+            </div>
+
         </div>
+    )
+}
+
+export function NumPadButton({label, classname, onclick}) {
+    return (
+        <div className={`${classname} button-outside`} onClick={onclick}>
+            <button>{label}</button>
+        </div>
+    )
+}
+
+export function ToolboxBar({onDel, onFormulas}) {
+    return (
+        <>
+            <div className='number-del' onClick={onDel}>
+                <button>DEL</button>
+            </div>
+            <div className='number-del' onClick={onFormulas}>
+                <button>Formulas</button>
+            </div>
+        </>
     )
 }
