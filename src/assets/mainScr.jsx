@@ -4,19 +4,35 @@ import "./mainScr.css"
 export function NumberPad() {
     const [display, setDisplay] = useState("0")
     const [valOne, setValOne] = useState(null)
+    const [symbolSet, setSymbolSet] = useState("")
 
     const plusButton = useRef(null)
 
     function handlePlus() {
         setValOne(Number(display))
+        setSymbolSet("+")
+        changeColorToRed()
+        setDisplay("0")
+        console.log("index 1 running", display, valOne)
+    }
+    function handleMinus() {
+        setValOne(Number(display))
+        setSymbolSet("-")
         changeColorToRed()
         setDisplay("0")
         console.log("index 1 running", display, valOne)
     }
     function handleEquals() {
-        const result = valOne + Number(display) // logica que deu certo:
-        setDisplay(result)                  // usar o valor 2 diretamente
-        undoColorToRed()
+        if (symbolSet == "+") {
+            const result = valOne + Number(display) // logica que deu certo:
+            setDisplay(result)                  // usar o valor 2 diretamente
+            undoColorToRed()
+        } else if (symbolSet == "-") {
+            const result = valOne - Number(display) // logica que deu certo:
+            setDisplay(result)                  // usar o valor 2 diretamente
+            undoColorToRed()
+        }
+
     }
 
     function changeColorToRed(e) {
@@ -74,7 +90,7 @@ export function NumberPad() {
                         <NumPadButton label="1" classname="number-1" onclick={() => changeDisplay("1")} />
                         <NumPadButton label="2" classname="number-2" onclick={() => changeDisplay("2")} />
                         <NumPadButton label="3" classname="number-3" onclick={() => changeDisplay("3")} />
-                        <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
+                        <div className='number-times button-outside' onClick={handleMinus}>
                             <button>-</button>
                         </div>
                     </div>
