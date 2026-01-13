@@ -22,14 +22,25 @@ export function NumberPad() {
         setDisplay("0")
         console.log("index 1 running", display, valOne)
     }
+    function handleTimes() {
+        setValOne(Number(display))
+        setSymbolSet("x")
+        changeColorToRed()
+        setDisplay("0")
+        console.log("index 1 running", display, valOne)
+    }
     function handleEquals() {
         if (symbolSet == "+") {
             const result = valOne + Number(display) // logica que deu certo:
             setDisplay(result)                  // usar o valor 2 diretamente
             undoColorToRed()
         } else if (symbolSet == "-") {
-            const result = valOne - Number(display) // logica que deu certo:
-            setDisplay(result)                  // usar o valor 2 diretamente
+            const result = valOne - Number(display)
+            setDisplay(result)
+            undoColorToRed()
+        } else if (symbolSet == "x") {
+            const result = valOne * Number(display)
+            setDisplay(result)
             undoColorToRed()
         }
 
@@ -82,7 +93,7 @@ export function NumberPad() {
                         <NumPadButton label="4" classname="number-4" onclick={() => changeDisplay("4")} />
                         <NumPadButton label="5" classname="number-5" onclick={() => changeDisplay("5")} />
                         <NumPadButton label="6" classname="number-6" onclick={() => changeDisplay("6")} />
-                        <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
+                        <div className='number-times button-outside' onClick={handleTimes}>
                             <button>x</button>
                         </div>
                     </div>
