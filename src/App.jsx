@@ -12,7 +12,6 @@ function App() {
       </div>
       <div className='main-content'>
         <NumberPad />
-        <FormPad />
       </div>
     </div>
     </>

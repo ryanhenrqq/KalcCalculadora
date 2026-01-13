@@ -119,10 +119,3 @@ export function NumberPad() {
         </div>
     )
 }
-
-export function FormPad() {
-    return (
-        <div>    
-        </div>
-    )
-}
