@@ -1,8 +1,16 @@
 import { useState } from 'react'
-import { NumberPad } from "./assets/mainScr.jsx"
+import { FuncsView, NumberPad } from "./assets/mainScr.jsx"
 import './App.css'
 
 function App() {
+  const [viewKey, setViewKey] = useState("main")
+  const handleViewChange = () => {
+    if (viewKey === "main"){
+      setViewKey("forms")
+    } else {
+      setViewKey("main")
+    }
+  }
   return (
     <>
     <div className="pg-content">
@@ -11,7 +19,7 @@ function App() {
         <h1 className="title">Kalc</h1>
       </div>
       <div className='main-content'>
-        <NumberPad />
+        {viewKey == "main" ? <NumberPad view={handleViewChange} /> : <FuncsView view={handleViewChange} />}
       </div>
     </div>
     </>

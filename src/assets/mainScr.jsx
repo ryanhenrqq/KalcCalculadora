@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import "./mainScr.css"
 
-export function NumberPad() {
+export function NumberPad({view}) {
     const [display, setDisplay] = useState("0")
     const [valOne, setValOne] = useState(null)
     const [symbolSet, setSymbolSet] = useState("")
@@ -29,6 +29,13 @@ export function NumberPad() {
         setDisplay("0")
         console.log("index 1 running", display, valOne)
     }
+    function handleDivision() {
+        setValOne(Number(display))
+        setSymbolSet("/")
+        changeColorToRed()
+        setDisplay("0")
+        console.log("index 1 running", display, valOne)
+    }
     function handleEquals() {
         if (symbolSet == "+") {
             const result = valOne + Number(display) // logica que deu certo:
@@ -40,6 +47,11 @@ export function NumberPad() {
             undoColorToRed()
         } else if (symbolSet == "x") {
             const result = valOne * Number(display)
+            setDisplay(result)
+            undoColorToRed()
+        }
+         else if (symbolSet == "/") {
+            const result = valOne / Number(display)
             setDisplay(result)
             undoColorToRed()
         }
@@ -85,7 +97,7 @@ export function NumberPad() {
                         <NumPadButton label="7" classname="number-7" onclick={() => changeDisplay("7")} />
                         <NumPadButton label="8" classname="number-8" onclick={() => changeDisplay("8")} />
                         <NumPadButton label="9" classname="number-9" onclick={() => changeDisplay("9")} />
-                        <div className='number-times button-outside' onClick={() => showInfoOnDisplay("Indisponivel")}>
+                        <div className='number-times button-outside' onClick={handleDivision}>
                             <button>/</button>
                         </div>
                     </div>
@@ -117,7 +129,7 @@ export function NumberPad() {
                     </div>
                 </div>
                 <div>
-                    <ToolboxBar onDel={eraseDisplay} onFormulas={() => showInfoOnDisplay("Indisponivel")} />
+                    <ToolboxBar onDel={eraseDisplay} onFormulas={view} />
                 </div>
 
             </div>
@@ -141,8 +153,60 @@ export function ToolboxBar({onDel, onFormulas}) {
                 <button>DEL</button>
             </div>
             <div className='number-del' onClick={onFormulas}>
-                <button>Formulas</button>
+                <button>Alterar Função</button>
             </div>
         </>
+    )
+}
+
+export function FuncsView({view}) {
+    const [display, setDisplay] = useState("Forms - Em breve")
+    function eraseDisplay() {
+        setValOne(null)
+        setDisplay("0")
+    }
+    function showInfoOnDisplay(message) {
+        setDisplay(message)
+        setTimeout(() => {
+            setValOne(null)
+            setDisplay("0")
+        }, 1000)
+    }
+    return (
+        <div className="contents">
+            <div className="number-display">
+                <input value={display} readOnly />
+            </div>
+            <div className="flex-hor">
+                <div>
+                    <div className='row-1'>
+                        <NumPadButton label="7" classname="number-7" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <NumPadButton label="8" classname="number-8" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <NumPadButton label="9" classname="number-9" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                    </div>
+                    <div className='row-2'>
+                        <NumPadButton label="4" classname="number-4" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <NumPadButton label="5" classname="number-5" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <NumPadButton label="6" classname="number-6" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                    </div>
+                    <div className='row-3'>
+                        <NumPadButton label="1" classname="number-1" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <NumPadButton label="2" classname="number-2" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <NumPadButton label="3" classname="number-3" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                    </div>
+                    <div className='row-4'>
+                        <NumPadButton label="0" classname="number-0" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <NumPadButton label=".," classname="symbol-dot" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <div className='symbol-equals button-outside' onClick={() => showInfoOnDisplay("Indisponivel!")}>
+                            <button>=</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <ToolboxBar onDel={eraseDisplay} onFormulas={view} />
+                </div>
+
+            </div>
+        </div>
     )
 }
