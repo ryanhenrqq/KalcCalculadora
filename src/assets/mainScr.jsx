@@ -159,6 +159,25 @@ export function ToolboxBar({onDel, onFormulas}) {
     )
 }
 
+export function FormsToolboxBar({onDel, onToFah, onToCel, onFormulas}) {
+    return (
+        <>
+            <div className='number-del' onClick={onDel}>
+                <button>Indefinido</button>
+            </div>
+            <div className='number-del' onClick={onToFah}>
+                <button>Para Fahreheit</button>
+            </div>
+            <div className='number-del' onClick={onToCel}>
+                <button>Para Celsius</button>
+            </div>
+            <div className='number-del' onClick={onFormulas}>
+                <button>Alterar Função</button>
+            </div>
+        </>
+    )
+}
+
 export function FuncsView({view}) {
     const [display, setDisplay] = useState("Forms - Em breve")
     function eraseDisplay() {
@@ -168,7 +187,6 @@ export function FuncsView({view}) {
     function showInfoOnDisplay(message) {
         setDisplay(message)
         setTimeout(() => {
-            setValOne(null)
             setDisplay("0")
         }, 1000)
     }
@@ -197,13 +215,13 @@ export function FuncsView({view}) {
                     <div className='row-4'>
                         <NumPadButton label="0" classname="number-0" onclick={() => showInfoOnDisplay("Indisponivel!")} />
                         <NumPadButton label=".," classname="symbol-dot" onclick={() => showInfoOnDisplay("Indisponivel!")} />
-                        <div className='symbol-equals button-outside' onClick={() => showInfoOnDisplay("Indisponivel!")}>
-                            <button>=</button>
+                        <div className='symbol-equals button-outside' onClick={eraseDisplay}>
+                            <button>DEL</button>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <ToolboxBar onDel={eraseDisplay} onFormulas={view} />
+                    <FormsToolboxBar onDel={() => showInfoOnDisplay("Indisponivel?")} onToFah={() => showInfoOnDisplay("Indisponivel!")} onToCel={() => showInfoOnDisplay("Indisponivel!")} onFormulas={view} />
                 </div>
 
             </div>
