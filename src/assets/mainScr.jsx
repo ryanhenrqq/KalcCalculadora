@@ -159,11 +159,11 @@ export function ToolboxBar({onDel, onFormulas}) {
     )
 }
 
-export function FormsToolboxBar({onDel, onToFah, onToCel, onFormulas}) {
+export function FormsToolboxBar({onDel, onToFah, onToCel, onFormulas, functionLabel}) {
     return (
         <>
             <div className='number-del' onClick={onDel}>
-                <button>Indefinido</button>
+                <button>{functionLabel}</button>
             </div>
             <div className='number-del' onClick={onToFah}>
                 <button>Para Fahreheit</button>
@@ -179,9 +179,8 @@ export function FormsToolboxBar({onDel, onToFah, onToCel, onFormulas}) {
 }
 
 export function FuncsView({view}) {
-    const [display, setDisplay] = useState("Forms - Em breve")
+    const [display, setDisplay] = useState("0")
     function eraseDisplay() {
-        setValOne(null)
         setDisplay("0")
     }
     function showInfoOnDisplay(message) {
@@ -190,38 +189,53 @@ export function FuncsView({view}) {
             setDisplay("0")
         }, 1000)
     }
+    function changeDisplay(number) {
+        if (display.length > 12) {
+            showInfoOnDisplay("Numero Grande!")
+        } else {
+            display === "0" ? setDisplay(number) : setDisplay(bef => bef + number)
+        }
+    }
+    function handleFtoC() {
+        const result = Math.trunc((Number(display) - 32)*5/9)
+        result < 1000 ? setDisplay(result) : setDisplay("0")
+    }
+    function handleCtoF() {
+        const result = Math.trunc((Number(display) * 1.8)+32)
+        result < 1000 ? setDisplay(result) : setDisplay("0")
+    }
     return (
         <div className="contents">
             <div className="number-display">
-                <input value={display} readOnly />
+                <input value={display} readOnly /><b>°</b>
             </div>
             <div className="flex-hor">
                 <div>
                     <div className='row-1'>
-                        <NumPadButton label="7" classname="number-7" onclick={() => showInfoOnDisplay("Indisponivel!")} />
-                        <NumPadButton label="8" classname="number-8" onclick={() => showInfoOnDisplay("Indisponivel!")} />
-                        <NumPadButton label="9" classname="number-9" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <NumPadButton label="7" classname="number-7" onclick={() => changeDisplay("7")} />
+                        <NumPadButton label="8" classname="number-8" onclick={() => changeDisplay("8")} />
+                        <NumPadButton label="9" classname="number-9" onclick={() => changeDisplay("9")} />
                     </div>
                     <div className='row-2'>
-                        <NumPadButton label="4" classname="number-4" onclick={() => showInfoOnDisplay("Indisponivel!")} />
-                        <NumPadButton label="5" classname="number-5" onclick={() => showInfoOnDisplay("Indisponivel!")} />
-                        <NumPadButton label="6" classname="number-6" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <NumPadButton label="4" classname="number-4" onclick={() => changeDisplay("4")} />
+                        <NumPadButton label="5" classname="number-5" onclick={() => changeDisplay("5")} />
+                        <NumPadButton label="6" classname="number-6" onclick={() => changeDisplay("6")} />
                     </div>
                     <div className='row-3'>
-                        <NumPadButton label="1" classname="number-1" onclick={() => showInfoOnDisplay("Indisponivel!")} />
-                        <NumPadButton label="2" classname="number-2" onclick={() => showInfoOnDisplay("Indisponivel!")} />
-                        <NumPadButton label="3" classname="number-3" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <NumPadButton label="1" classname="number-1" onclick={() => changeDisplay("1")} />
+                        <NumPadButton label="2" classname="number-2" onclick={() => changeDisplay("2")} />
+                        <NumPadButton label="3" classname="number-3" onclick={() => changeDisplay("3")} />
                     </div>
                     <div className='row-4'>
-                        <NumPadButton label="0" classname="number-0" onclick={() => showInfoOnDisplay("Indisponivel!")} />
-                        <NumPadButton label=".," classname="symbol-dot" onclick={() => showInfoOnDisplay("Indisponivel!")} />
+                        <NumPadButton label="0" classname="number-0" onclick={() => changeDisplay("0")} />
+                        <NumPadButton label=".," classname="symbol-dot" onclick={() => changeDisplay(".")} />
                         <div className='symbol-equals button-outside' onClick={eraseDisplay}>
                             <button>DEL</button>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <FormsToolboxBar onDel={() => showInfoOnDisplay("Indisponivel?")} onToFah={() => showInfoOnDisplay("Indisponivel!")} onToCel={() => showInfoOnDisplay("Indisponivel!")} onFormulas={view} />
+                    <FormsToolboxBar onDel={() => showInfoOnDisplay("Indisponivel")} onToFah={handleCtoF} onToCel={handleFtoC} onFormulas={view} functionLabel={"1- Temperatura"} />
                 </div>
 
             </div>
