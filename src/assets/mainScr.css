@@ -28,12 +28,19 @@
     align-items: center;
     background-color: rgb(56, 56, 56);
     padding: 20px;
+    margin-left: 50vh;
+    margin-right: 50vh;
     border-radius: 28px;
 }
 .row-1, .row-2, .row-3, .row-4, .row-5 {
     display: flex;
     flex-direction: row;
 } /* Todos os botões: Estilos Globais primeiro */
+.grid-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+}
 button {
     display: flex;
     justify-content: center;
@@ -54,7 +61,7 @@ button:active {
 .button-outside {
     width: 6rem;
     height: 6rem;
-    margin: 8px;
+    margin: 4px;
 }
 .number-del {
     margin: 8px;
@@ -70,4 +77,14 @@ button:active {
 }
 .number-times button:active {
     border: solid 1px greenyellow;
+}
+
+@media (max-width: 768px) {
+    button {
+        padding: 10px;
+    }
+    /*
+    .grid-display {
+        grid-template-columns: 1fr 1fr 1fr;
+    }*/
 }

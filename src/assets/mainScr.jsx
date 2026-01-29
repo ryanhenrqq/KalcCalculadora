@@ -91,43 +91,33 @@ export function NumberPad({view}) {
             <div className="number-display">
                 <input value={display} readOnly />
             </div>
-            <div className="flex-hor">
-                <div>
-                    <div className='row-1'>
-                        <NumPadButton label="7" classname="number-7" onclick={() => changeDisplay("7")} />
-                        <NumPadButton label="8" classname="number-8" onclick={() => changeDisplay("8")} />
-                        <NumPadButton label="9" classname="number-9" onclick={() => changeDisplay("9")} />
-                        <div className='number-times button-outside' onClick={handleDivision}>
-                            <button>/</button>
-                        </div>
+            <div className="grid-display">
+                    <NumPadButton label="7" classname="number-7" onclick={() => changeDisplay("7")} />
+                    <NumPadButton label="8" classname="number-8" onclick={() => changeDisplay("8")} />
+                    <NumPadButton label="9" classname="number-9" onclick={() => changeDisplay("9")} />
+                    <div className='number-times button-outside' onClick={handleDivision}>
+                        <button>/</button>
                     </div>
-                    <div className='row-2'>
-                        <NumPadButton label="4" classname="number-4" onclick={() => changeDisplay("4")} />
-                        <NumPadButton label="5" classname="number-5" onclick={() => changeDisplay("5")} />
-                        <NumPadButton label="6" classname="number-6" onclick={() => changeDisplay("6")} />
-                        <div className='number-times button-outside' onClick={handleTimes}>
-                            <button>x</button>
-                        </div>
+                    <NumPadButton label="4" classname="number-4" onclick={() => changeDisplay("4")} />
+                    <NumPadButton label="5" classname="number-5" onclick={() => changeDisplay("5")} />
+                    <NumPadButton label="6" classname="number-6" onclick={() => changeDisplay("6")} />
+                    <div className='number-times button-outside' onClick={handleTimes}>
+                        <button>x</button>
                     </div>
-                    <div className='row-3'>
-                        <NumPadButton label="1" classname="number-1" onclick={() => changeDisplay("1")} />
-                        <NumPadButton label="2" classname="number-2" onclick={() => changeDisplay("2")} />
-                        <NumPadButton label="3" classname="number-3" onclick={() => changeDisplay("3")} />
-                        <div className='number-times button-outside' onClick={handleMinus}>
-                            <button>-</button>
-                        </div>
+                    <NumPadButton label="1" classname="number-1" onclick={() => changeDisplay("1")} />
+                    <NumPadButton label="2" classname="number-2" onclick={() => changeDisplay("2")} />
+                    <NumPadButton label="3" classname="number-3" onclick={() => changeDisplay("3")} />
+                    <div className='number-times button-outside' onClick={handleMinus}>
+                        <button>-</button>
                     </div>
-                    <div className='row-4'>
-                        <NumPadButton label="0" classname="number-0" onclick={() => changeDisplay("0")} />
-                        <NumPadButton label=".," classname="symbol-dot" onclick={() => changeDisplay(".")} />
-                        <div className='symbol-equals button-outside' onClick={handleEquals}>
-                            <button>=</button>
-                        </div>
-                        <div className='number-times button-outside' onClick={handlePlus}>
-                            <button ref={plusButton}>+</button>
-                        </div>
+                    <NumPadButton label="0" classname="number-0" onclick={() => changeDisplay("0")} />
+                    <NumPadButton label=".," classname="symbol-dot" onclick={() => changeDisplay(".")} />
+                    <div className='symbol-equals button-outside' onClick={handleEquals}>
+                        <button>=</button>
                     </div>
-                </div>
+                    <div className='number-times button-outside' onClick={handlePlus}>
+                        <button ref={plusButton}>+</button>
+                    </div>
                 <div>
                     <ToolboxBar onDel={eraseDisplay} onFormulas={view} />
                 </div>
@@ -209,7 +199,7 @@ export function FuncsView({view}) {
             <div className="number-display">
                 <input value={display} readOnly /><b>°</b>
             </div>
-            <div className="flex-hor">
+            <div className="grid-display">
                 <div>
                     <div className='row-1'>
                         <NumPadButton label="7" classname="number-7" onclick={() => changeDisplay("7")} />

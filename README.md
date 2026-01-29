@@ -1,23 +1,23 @@
 # ⚖️ Kalc Calculadora
 
-- Kalc é um projeto de uma calculadora, com funcionalidades basicas de calculo e formulas prontas de conversão
+- Kalc is a calculator project with basic calculation functions and ready conversion formulas.
 
-- Este é um projeto escrito em React, usando de elementos já contidos de JavaScript, CSS & HTML
+- This is a React based project, making use JavaScript, CSS, and HTML elements.
 
-- **Alerta: esse readme é meramente uma ilustração do que esse projeto deve ser quando estiver pronto, no momento ele está em suas primeiras versões**
-
----
-
-## 🛠️ Funcionalidades
-
-- Calculos aritmetricos simples e convencionais: Adição, Subtração, Multiplicação, Divisão & Potenciação.
-
-- Calculo de formulas famosas e bastante usadas: Temperatura (Fahrenheit/Celsius), Medição(Kilometros/Milhas), Regra de Trés(numeros cruzados, do tipo a/b = c/d simplifica a d = b.c/a)
+- **Warning: This readme is an illustration of what this project should be when it's finished; currently, it's in its early stages.**
 
 ---
 
-## 🎯 Objetivo
+## 🛠️ Funcionalities
 
-- Entregar uma funcionalidade, quase que necessaria ao usuario, da forma mais intuitiva e simplificada possivel, focado em ser objetivo em sua função.
+- Simple and conventional arithmetic calculations: Addition, Subtraction, Multiplication, Division, and Exponentiation.
 
-- Adiantar tempo resolvendo formulas já pré-escritas e prontas para uso, fazendo assim o usuário ter uma produtividade bem maior em seu objetivo.
+- Calculation of famous and widely used formulas: Temperature (Fah/Cel), Measurement (Kil/Mil), Rule of Three (cross-multiplication, such as a/b = c/d, simplifies to d = b.c/a)
+
+---
+
+## 🎯 Goal
+
+- To deliver a feature that is almost essential to the user in the most intuitive and simplified way possible, focusing on being objective in its function.
+
+- Saving time by using already written, ready formulas allows the user to be much more productive in achieving their goal.
