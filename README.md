@@ -1,4 +1,4 @@
-# ⚖️ Kalc Calculadora
+# ⚖️ KalcCalculator (formely Kalc Calculadora)
 
 - Kalc is a calculator project with basic calculation functions and ready conversion formulas.
 
