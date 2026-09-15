@@ -1,4 +1,7 @@
 .number-display { /* Display */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 32rem;
     background-color: black;
     margin: 12px;
@@ -7,10 +10,10 @@
     border-radius: 8px;
 }
 .number-display input {
-    width: 90%;
-    background-color: black;
+    width: 100%;
+    background-color: #85C255;
     font-size: 54px;
-    font-weight: bolder;
+    font-weight: 100;
     border: none;
     border-radius: 8px;
 }
@@ -23,14 +26,17 @@
 /* Organização do grid */
 .contents {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: rgb(56, 56, 56);
+    background: #000000;
+    background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 35%, rgba(59, 56, 56, 1) 100%);
     padding: 20px;
     margin-left: 50vh;
     margin-right: 50vh;
+    border: solid 1px black;
     border-radius: 28px;
+    box-shadow: 4px 4px 8px black;
 }
 .row-1, .row-2, .row-3, .row-4, .row-5 {
     display: flex;
@@ -39,6 +45,11 @@
 .grid-display {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+}
+.grid-display-three {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 0;
 }
 button {

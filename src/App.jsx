@@ -15,8 +15,10 @@ function App() {
     <>
     <div className="pg-content">
       <div className="header">
-        <img src="./src/res/calculator.png" alt="Calculator" />
-        <h1 className="title">Kalc</h1>
+        <div className="header-content">
+          <img src="./src/res/calculator.png" alt="Calculator" />
+          <h1 className="title">Kalc</h1> 
+        </div>
       </div>
       <div className='main-content'>
         {viewKey == "main" ? <NumberPad view={handleViewChange} /> : <FuncsView view={handleViewChange} />}
